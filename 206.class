@@ -1,0 +1,71 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode reverse = null;
+        ListNode pre = null;
+        ListNode curr = head;
+
+        if(head == null) return null;
+
+        while(curr != null) {
+            pre = reverse;
+            reverse = curr;
+            curr = curr.next;
+            reverse.next = pre;
+        }
+        return reverse;
+    }
+}
+/*206. Reverse Linked List 연결리스트
+https://leetcode.com/problems/reverse-linked-list/
+
+﻿
+pre를 reverse의 현재 노드를 넣는다. (할당한다)
+
+reverse 노드에 curr 노드를 넣는다. (할당)
+
+curr 노드를 다음 curr 노드로 수정한다. (할당)
+
+reverse 노드가 pre 노드(이전노드)를 가리킨다.
+
+Input: head = [1,2,3,4,5] 
+1.
+pre = null;
+reverse = 1;
+curr = 2;
+reverse.next = null;  //reverse : 1 (->null)
+
+2.
+pre = 1;
+reverse = 2;
+curr = 3;
+reverse.next = 1;  // reverse : 2->1 (->null)
+
+3.
+pre = 2;
+reverse = 3;
+curr = 4;
+reverse.next = 2;  // reverse 3->2->1 (->null)
+
+4.
+pre = 3;
+reverse = 4;
+curr = 5;
+reverse.next = 3;  // reverse 4->3->2->1 (->null)
+
+5.
+pre = 4;
+reverse = 5;
+curr = null //반복문 종료
+reverse.next = 3;  // reverse 5->4->3->2->1 (->null)
+
+return reverse;   // reverse  5->4->3->2->1 */
